@@ -1,0 +1,31 @@
+{
+  "name": "apiNG-plugin-vimeo",
+  "homepage": "https://github.com/JohnnyTheTank/apiNG-plugin-vimeo",
+  "authors": [
+    "Jonathan Hornung <jonathan.hornung@gmail.com>"
+  ],
+  "version": "0.1.0",
+  "description": "vimeo plugin for apiNG",
+  "main": "dist/apiNG-plugin-vimeo.min.js",
+  "moduleType": [],
+  "keywords": [
+    "aping",
+    "vimeo",
+    "angularjs",
+    "rest",
+    "api",
+    "json"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "apiNG": "*",
+    "angular-vimeo-api-factory": "*"
+  }
+}
