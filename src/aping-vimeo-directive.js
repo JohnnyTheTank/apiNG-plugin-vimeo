@@ -38,7 +38,7 @@ var jjtApingVimeo = angular.module("jtt_aping_vimeo", ['jtt_vimeo'])
                         vimeoFactory.getVideosFromUser(vimeoSearchObject)
                             .success(function (_data) {
                                 if (_data) {
-                                    apingController.concatToResults(apingVimeoHelper.getObjectByJsonData(_data, appSettings.type));
+                                    apingController.concatToResults(apingVimeoHelper.getObjectByJsonData(_data, appSettings.model));
                                 }
                             });
 
@@ -51,7 +51,7 @@ var jjtApingVimeo = angular.module("jtt_aping_vimeo", ['jtt_vimeo'])
                         vimeoFactory.getVideosFromChannel(vimeoSearchObject)
                             .success(function (_data) {
                                 if (_data) {
-                                    apingController.concatToResults(apingVimeoHelper.getObjectByJsonData(_data, appSettings.type));
+                                    apingController.concatToResults(apingVimeoHelper.getObjectByJsonData(_data, appSettings.model));
                                 }
                             });
 
@@ -61,7 +61,7 @@ var jjtApingVimeo = angular.module("jtt_aping_vimeo", ['jtt_vimeo'])
                         vimeoFactory.getVideosFromTag(vimeoSearchObject)
                             .success(function (_data) {
                                 if (_data) {
-                                    apingController.concatToResults(apingVimeoHelper.getObjectByJsonData(_data, appSettings.type));
+                                    apingController.concatToResults(apingVimeoHelper.getObjectByJsonData(_data, appSettings.model));
                                 }
                             });
 
@@ -73,7 +73,7 @@ var jjtApingVimeo = angular.module("jtt_aping_vimeo", ['jtt_vimeo'])
                         vimeoFactory.getVideosFromCategory(vimeoSearchObject)
                             .success(function (_data) {
                                 if (_data) {
-                                    apingController.concatToResults(apingVimeoHelper.getObjectByJsonData(_data, appSettings.type));
+                                    apingController.concatToResults(apingVimeoHelper.getObjectByJsonData(_data, appSettings.model));
                                 }
                             });
                     }
