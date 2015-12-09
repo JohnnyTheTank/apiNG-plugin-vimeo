@@ -89,6 +89,8 @@ jjtApingVimeo.service('apingVimeoHelper', ['apingModels', 'apingTimeHelper', 'ap
             text: _item.description,
         });
 
+        socialObject.date_time = new Date(socialObject.timestamp);
+
         if(_item.embed && _item.embed.html) {
             socialObject.source = _item.embed.html;
         }
@@ -120,6 +122,8 @@ jjtApingVimeo.service('apingVimeoHelper', ['apingModels', 'apingTimeHelper', 'ap
             caption: _item.name,
             text: _item.description,
         });
+
+        videoObject.date_time = new Date(videoObject.timestamp);
 
         if(_item.embed && _item.embed.html) {
             videoObject.markup = _item.embed.html;

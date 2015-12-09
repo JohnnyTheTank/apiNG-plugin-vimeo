@@ -22,7 +22,7 @@ var jjtApingVimeo = angular.module("jtt_aping_vimeo", ['jtt_vimeo'])
 
                     var vimeoSearchObject = {
                         'per_page': request.items || appSettings.items,
-                        'access_token': apingApiKeys.vimeo,
+                        'access_token': apingUtilityHelper.getApiCredentials(apingVimeoHelper.getThisPlattformString(), "access_token"),
                     };
 
                     if(request.search) {

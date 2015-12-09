@@ -2,7 +2,9 @@
 apingApp.config(['$provide', function ($provide) {
 
     $provide.constant("apingApiKeys", {
-        vimeo : "1e53b10910c18adf97682d12e01e60d6",
+        vimeo: [
+            {'access_token':'1e53b10910c18adf97682d12e01e60d6'}
+        ],
     });
 
     $provide.constant("apingDefaultSettings", {
