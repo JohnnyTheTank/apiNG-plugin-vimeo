@@ -14,7 +14,7 @@ apingApp.config(['$provide', function ($provide) {
         orderBy : "timestamp",
         orderReverse : "true",
         model: "social",
-        getNativeData: true, // Use "true" for getting native data from plugins
+        getNativeData: false, // Use "true" for getting native data from plugins
     });
 
 }]);
