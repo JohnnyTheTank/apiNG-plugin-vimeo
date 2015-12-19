@@ -3,7 +3,7 @@ apingApp.config(['$provide', function ($provide) {
 
     $provide.constant("apingApiKeys", {
         vimeo: [
-            {'access_token':'1e53b10910c18adf97682d12e01e60d6'}
+            {'access_token':'<YOUR_VIMEO_ACCESS_TOKEN>'}
         ],
     });
 
@@ -14,6 +14,7 @@ apingApp.config(['$provide', function ($provide) {
         orderBy : "timestamp",
         orderReverse : "true",
         model: "social",
+        getNativeData: true, // Use "true" for getting native data from plugins
     });
 
 }]);

@@ -35,7 +35,7 @@ jjtApingVimeo.service('apingVimeoHelper', ['apingModels', 'apingTimeHelper', 'ap
         }
     };
 
-    this.getObjectByJsonData = function (_data, _model) {
+    this.getObjectByJsonData = function (_data, _helperObject) {
         var requestResults = [];
         if (_data) {
             var _this = this;
@@ -43,7 +43,12 @@ jjtApingVimeo.service('apingVimeoHelper', ['apingModels', 'apingTimeHelper', 'ap
             if (_data.data) {
 
                 angular.forEach(_data.data, function (value, key) {
-                    var tempResult = _this.getItemByJsonData(value, _model);
+                    var tempResult;
+                    if(_helperObject.getNativeData === true || _helperObject.getNativeData === "true") {
+                        tempResult = value;
+                    } else {
+                        tempResult = _this.getItemByJsonData(value, _helperObject.model);
+                    }
                     if(tempResult) {
                         requestResults.push(tempResult);
                     }

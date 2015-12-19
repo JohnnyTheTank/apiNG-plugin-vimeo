@@ -20,60 +20,71 @@ var jjtApingVimeo = angular.module("jtt_aping_vimeo", ['jtt_vimeo'])
 
                 requests.forEach(function (request) {
 
-                    var vimeoSearchObject = {
+                    //create helperObject for helper function call
+                    var helperObject = {
+                        model: appSettings.model,
+                    };
+                    if(typeof appSettings.getNativeData !== "undefined") {
+                        helperObject.getNativeData = appSettings.getNativeData;
+                    } else {
+                        helperObject.getNativeData = false;
+                    }
+
+                    //create requestObject for api request call
+                    var requestObject = {
                         'per_page': request.items || appSettings.items,
                         'access_token': apingUtilityHelper.getApiCredentials(apingVimeoHelper.getThisPlattformString(), "access_token"),
                     };
-
                     if(request.search) {
-                        vimeoSearchObject.query = request.search;
+                        requestObject.query = request.search;
                     }
+
 
                     if (request.user) { //search for videos by user
 
-                        vimeoSearchObject.user = request.user;
-                        vimeoSearchObject.filter = "embeddable";
-                        vimeoSearchObject.filter_embeddable = true;
+                        requestObject.user = request.user;
+                        requestObject.filter = "embeddable";
+                        requestObject.filter_embeddable = true;
 
-                        vimeoFactory.getVideosFromUser(vimeoSearchObject)
+                        vimeoFactory.getVideosFromUser(requestObject)
                             .success(function (_data) {
                                 if (_data) {
-                                    apingController.concatToResults(apingVimeoHelper.getObjectByJsonData(_data, appSettings.model));
+                                    apingController.concatToResults(apingVimeoHelper.getObjectByJsonData(_data, helperObject));
                                 }
                             });
 
                     } else if (request.channel) { //search for videos by channel
 
-                        vimeoSearchObject.channel = request.channel;
-                        vimeoSearchObject.filter = "embeddable";
-                        vimeoSearchObject.filter_embeddable = true;
+                        requestObject.channel = request.channel;
+                        requestObject.filter = "embeddable";
+                        requestObject.filter_embeddable = true;
 
-                        vimeoFactory.getVideosFromChannel(vimeoSearchObject)
+                        vimeoFactory.getVideosFromChannel(requestObject)
                             .success(function (_data) {
                                 if (_data) {
-                                    apingController.concatToResults(apingVimeoHelper.getObjectByJsonData(_data, appSettings.model));
+                                    apingController.concatToResults(apingVimeoHelper.getObjectByJsonData(_data, helperObject));
                                 }
                             });
 
                     } else if (request.tag) { //search for videos by tag
-                        vimeoSearchObject.tag = request.tag;
+                        requestObject.tag = request.tag;
 
-                        vimeoFactory.getVideosFromTag(vimeoSearchObject)
+                        vimeoFactory.getVideosFromTag(requestObject)
                             .success(function (_data) {
                                 if (_data) {
-                                    apingController.concatToResults(apingVimeoHelper.getObjectByJsonData(_data, appSettings.model));
+                                    apingController.concatToResults(apingVimeoHelper.getObjectByJsonData(_data, helperObject));
                                 }
                             });
 
                     } else if (request.category) { //search for videos by category
-                        vimeoSearchObject.category = request.category;
-                        vimeoSearchObject.filter = "embeddable";
-                        vimeoSearchObject.filter_embeddable = true;
+                        requestObject.category = request.category;
+                        requestObject.filter = "embeddable";
+                        requestObject.filter_embeddable = true;
 
-                        vimeoFactory.getVideosFromCategory(vimeoSearchObject)
+                        vimeoFactory.getVideosFromCategory(requestObject)
                             .success(function (_data) {
                                 if (_data) {
-                                    apingController.concatToResults(apingVimeoHelper.getObjectByJsonData(_data, appSettings.model));
+                                    apingController.concatToResults(apingVimeoHelper.getObjectByJsonData(_data, helperObject));
                                 }
                             });
                     }
