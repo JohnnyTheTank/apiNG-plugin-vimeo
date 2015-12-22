@@ -32,13 +32,33 @@ var jjtApingVimeo = angular.module("jtt_aping_vimeo", ['jtt_vimeo'])
 
                     //create requestObject for api request call
                     var requestObject = {
-                        'per_page': request.items || appSettings.items,
-                        'access_token': apingUtilityHelper.getApiCredentials(apingVimeoHelper.getThisPlattformString(), "access_token"),
+                        access_token: apingUtilityHelper.getApiCredentials(apingVimeoHelper.getThisPlattformString(), "access_token"),
                     };
-                    if(request.search) {
-                        requestObject.query = request.search;
+
+                    if(typeof request.items !== "undefined") {
+                        requestObject.per_page = request.items;
+                    } else {
+                        requestObject.per_page = appSettings.items;
                     }
 
+                    if(requestObject.per_page == 0) {
+                        return false;
+                    }
+
+                    // -1 is "no explicit limit". same for NaN value
+                    if(requestObject.per_page < 0 || isNaN(requestObject.per_page)) {
+                        requestObject.per_page = undefined;
+                    }
+
+                    // the api has a limit of 50 items per request
+                    if(requestObject.per_page > 50) {
+                        requestObject.per_page = 50;
+                    }
+
+
+                    if(typeof request.search !== "undefined") {
+                        requestObject.query = request.search;
+                    }
 
                     if (request.user) { //search for videos by user
 
