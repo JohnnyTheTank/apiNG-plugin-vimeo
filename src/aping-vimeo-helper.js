@@ -21,7 +21,7 @@ jjtApingVimeo.service('apingVimeoHelper', ['apingModels', 'apingTimeHelper', 'ap
 
     this.getActionCounter = function (_connections, _action) {
         if(_connections[_action]) {
-            return _connections[_action].total || false;
+            return _connections[_action].total || undefined;
         }
     };
 
