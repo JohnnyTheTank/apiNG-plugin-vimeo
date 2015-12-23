@@ -41,7 +41,7 @@ Add the plugin's directive `aping-vimeo="[]"` to your apiNG directive and config
     template-url="templates/social.html"
     model="social"
     items="20"
-    aping-vimeo="[{'tag':'fcbayern'}]">
+    aping-vimeo="[{'tag':'fcbayern'}, {'category':'sports', 'search':'soccer', items':50}]">
 </aping>
 ```
 
