@@ -146,7 +146,6 @@ jjtApingVimeo.service('apingVimeoHelper', ['apingModels', 'apingTimeHelper', 'ap
             videoObject.comments = this.getActionCounter(_item.metadata.connections, "comments");
         }
 
-
         return videoObject;
     };
 
