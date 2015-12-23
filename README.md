@@ -97,8 +97,7 @@ Supported apiNG models
 
 
 ### b) Requests
-* Every **apiNG plugin** expects an array of **requests** as html attribute.
-* Every **request** is defined as single API call or something like that.
+Every **apiNG plugin** expects an array of **requests** as html attribute
 
 #### User
 |  parameter  | sample | description | optional |
