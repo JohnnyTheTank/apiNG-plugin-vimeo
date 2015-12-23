@@ -1,5 +1,5 @@
 # apiNG-plugin-vimeo
-Vimeo API Plugin for [apiNG](https://github.com/JohnnyTheTank/apiNG)
+[Vimeo API](https://developer.vimeo.com/api) Plugin for [apiNG](https://github.com/JohnnyTheTank/apiNG)
 
 # Information
 * **Supported apiNG models: `social`, `video`**
