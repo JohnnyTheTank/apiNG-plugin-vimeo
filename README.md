@@ -97,9 +97,9 @@ Supported apiNG models
 
 
 ### b) Requests
-Every **apiNG plugin** expects an array of **requests** as html attribute
+Every **apiNG plugin** expects an array of **requests** as html attribute.
 
-#### User
+#### Requests by User
 |  parameter  | sample | description | optional |
 |----------|---------|---------|---------|
 | **`user`** | `guiltyofficial` | user name | no |
@@ -110,7 +110,7 @@ Samples:
 * `[{'user':'guiltyofficial'}, {'user':'thisisus'}, {'user':'user37039550'}]`
 * `[{'user':'krismerc', 'search':'slomins', items':10}]`
 
-#### Tag
+#### Requests by Tag
 |  parameter  | sample | description | optional |
 |----------|---------|---------|---------|
 | **`tag`** | `fcbayern` | tag name | no |
@@ -121,7 +121,7 @@ Samples:
 * `[{'tag':'munich'}, {'tag':'letsplay'}, {'tag':'comedy'}]`
 * `[{'tag':'comedy', 'search':'prank', items':50}]`
 
-#### Channel
+#### Requests by Channel
 |  parameter  | sample | description | optional |
 |----------|---------|---------|---------|
 | **`channel`** | `animade` | channel name | no |
@@ -134,7 +134,7 @@ Samples:
 * `[{'channel':'musicbed'}, {'channel':'nowness'}, {'channel':'worldhd'}]`
 * `[{'channel':'worldhd', 'search':'thailand', items':50}]`
 
-#### Category
+#### Requests by Category
 |  parameter  | sample | description | optional |
 |----------|---------|---------|---------|
 | **`category`** | `fashion` | category name | no |
