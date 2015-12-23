@@ -125,7 +125,7 @@ Samples:
 |  parameter  | sample | description | optional |
 |----------|---------|---------|---------|
 | **`channel`** | `animade` | channel name | no |
-| **`search`** | `calarts` | search query | yes |
+| **`search`** | `CalArts` | search query | yes |
 | **`items`**  | `0`-`50` | items per request |  yes  |
 
 Visit the list of [vimeo channels](https://vimeo.com/channels/)
@@ -137,8 +137,8 @@ Samples:
 #### Category
 |  parameter  | sample | description | optional |
 |----------|---------|---------|---------|
-| **`category`** | `animade` | category name | no |
-| **`search`** | `calarts` | search query | yes |
+| **`category`** | `fashion` | category name | no |
+| **`search`** | `highheels` | search query | yes |
 | **`items`**  | `0`-`50` | items per request |  yes  |
 
 Visit the list of [vimeo categories](https://vimeo.com/categories/)
