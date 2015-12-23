@@ -132,7 +132,6 @@ jjtApingVimeo.service('apingVimeoHelper', ['apingModels', 'apingTimeHelper', 'ap
 
         if(_item.embed && _item.embed.html) {
             videoObject.markup = _item.embed.html;
-            videoObject.source = _item.embed.html;
         } else {
             return false;
         }
