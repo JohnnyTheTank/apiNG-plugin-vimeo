@@ -9,15 +9,16 @@
     <script src="../bower_components/angular-sanitize/angular-sanitize.min.js"></script>
     <script src="../bower_components/apiNG/dist/aping.min.js"></script>
     <script src="aping-config.js"></script>
+    <script src="aping-design-blanko.js"></script>
     <script src="app.js"></script>
     <script src="../bower_components/angular-vimeo-api-factory/src/angular-vimeo-api-factory.js"></script>
     <script src="../src/aping-vimeo-directive.js"></script>
     <script src="../src/aping-vimeo-helper.js"></script>
 </head>
 <body ng-app="app">
+    <aping model="video" aping-vimeo="[{'channel':'nicetype'}]"></aping>
     <aping model="social" aping-vimeo="[{'user':'alexanderengel'}]"></aping>
     <aping model="social" aping-vimeo="[{'tag':'fcbayern'}]"></aping>
-    <aping model="video" aping-vimeo="[{'channel':'nicetype'}]"></aping>
     <aping model="video" aping-vimeo="[{'category':'cameratechniques'}]"></aping>
 </body>
 </html>
