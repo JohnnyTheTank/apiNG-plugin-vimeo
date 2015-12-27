@@ -126,6 +126,9 @@ jjtApingVimeo.service('apingVimeoHelper', ['apingModels', 'apingTimeHelper', 'ap
             post_url: _item.link,
             caption: _item.name,
             text: _item.description,
+            duration: _item.duration, // in seconds
+            width: _item.width,
+            height: _item.height,
         });
 
         videoObject.date_time = new Date(videoObject.timestamp);
