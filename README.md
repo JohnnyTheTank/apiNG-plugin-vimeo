@@ -1,3 +1,6 @@
+[logo]: http://aping.io/logo/320/aping-plugin.png "apiNG Plugin"
+![apiNG][logo]
+
 # apiNG-plugin-vimeo
 [Vimeo API](https://developer.vimeo.com/api) Plugin for [apiNG](https://github.com/JohnnyTheTank/apiNG)
 
