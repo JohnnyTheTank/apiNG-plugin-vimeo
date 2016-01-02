@@ -26,7 +26,7 @@ You can choose your preferred method of installation:
 * Download from github: [apiNG-plugin-vimeo.zip](https://github.com/JohnnyTheTank/apiNG-plugin-vimeo/zipball/master)
 
 ### b) Include files
-Include `apiNG-plugin-vimeo.min.js` in your apiNG application
+Include `aping-plugin-vimeo.min.js` in your apiNG application
 ```html
 <script src="bower_components/apiNG-plugin-vimeo/dist/aping-plugin-vimeo.min.js"></script>
 ```
