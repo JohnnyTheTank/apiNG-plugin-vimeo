@@ -28,7 +28,7 @@ You can choose your preferred method of installation:
 ### b) Include files
 Include `apiNG-plugin-vimeo.min.js` in your apiNG application
 ```html
-<script src="bower_components/apiNG-plugin-vimeo/dist/apiNG-plugin-vimeo.min.js"></script>
+<script src="bower_components/apiNG-plugin-vimeo/dist/aping-plugin-vimeo.min.js"></script>
 ```
 
 ### c) Add dependencies
