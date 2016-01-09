@@ -1,11 +1,5 @@
 "use strict";
 
-/**
- @author Jonathan Hornung (https://github.com/JohnnyTheTank)
- @url https://github.com/JohnnyTheTank/apiNG-plugin-vimeo
- @licence MIT
- */
-
 var jjtApingVimeo = angular.module("jtt_aping_vimeo", ['jtt_vimeo'])
     .directive('apingVimeo', ['apingApiKeys', 'apingVimeoHelper', 'apingUtilityHelper', 'vimeoFactory', function (apingApiKeys, apingVimeoHelper, apingUtilityHelper, vimeoFactory) {
         return {
@@ -67,7 +61,7 @@ var jjtApingVimeo = angular.module("jtt_aping_vimeo", ['jtt_vimeo'])
                         requestObject.filter_embeddable = true;
 
                         vimeoFactory.getVideosFromUser(requestObject)
-                            .success(function (_data) {
+                            .then(function (_data) {
                                 if (_data) {
                                     apingController.concatToResults(apingVimeoHelper.getObjectByJsonData(_data, helperObject));
                                 }
@@ -80,7 +74,7 @@ var jjtApingVimeo = angular.module("jtt_aping_vimeo", ['jtt_vimeo'])
                         requestObject.filter_embeddable = true;
 
                         vimeoFactory.getVideosFromChannel(requestObject)
-                            .success(function (_data) {
+                            .then(function (_data) {
                                 if (_data) {
                                     apingController.concatToResults(apingVimeoHelper.getObjectByJsonData(_data, helperObject));
                                 }
@@ -90,7 +84,7 @@ var jjtApingVimeo = angular.module("jtt_aping_vimeo", ['jtt_vimeo'])
                         requestObject.tag = request.tag;
 
                         vimeoFactory.getVideosFromTag(requestObject)
-                            .success(function (_data) {
+                            .then(function (_data) {
                                 if (_data) {
                                     apingController.concatToResults(apingVimeoHelper.getObjectByJsonData(_data, helperObject));
                                 }
@@ -102,7 +96,7 @@ var jjtApingVimeo = angular.module("jtt_aping_vimeo", ['jtt_vimeo'])
                         requestObject.filter_embeddable = true;
 
                         vimeoFactory.getVideosFromCategory(requestObject)
-                            .success(function (_data) {
+                            .then(function (_data) {
                                 if (_data) {
                                     apingController.concatToResults(apingVimeoHelper.getObjectByJsonData(_data, helperObject));
                                 }

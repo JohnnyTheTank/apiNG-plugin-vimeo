@@ -1,11 +1,5 @@
 "use strict";
 
-/**
- @author Jonathan Hornung (https://github.com/JohnnyTheTank)
- @url https://github.com/JohnnyTheTank/apiNG-plugin-vimeo
- @licence MIT
- */
-
 jjtApingVimeo.service('apingVimeoHelper', ['apingModels', 'apingTimeHelper', 'apingUtilityHelper', function (apingModels, apingTimeHelper, apingUtilityHelper) {
     this.getThisPlattformString = function () {
         return "vimeo";
@@ -37,12 +31,12 @@ jjtApingVimeo.service('apingVimeoHelper', ['apingModels', 'apingTimeHelper', 'ap
 
     this.getObjectByJsonData = function (_data, _helperObject) {
         var requestResults = [];
-        if (_data) {
+        if (_data && _data.data) {
             var _this = this;
 
-            if (_data.data) {
+            if (_data.data.data) {
 
-                angular.forEach(_data.data, function (value, key) {
+                angular.forEach(_data.data.data, function (value, key) {
                     var tempResult;
                     if(_helperObject.getNativeData === true || _helperObject.getNativeData === "true") {
                         tempResult = value;

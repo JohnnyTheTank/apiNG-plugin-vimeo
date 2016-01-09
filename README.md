@@ -6,7 +6,7 @@
 
 # Information
 * **Supported apiNG models: `social`, `video`**
-* Used promise library: [angular-vimeo-api-factory](https://github.com/JohnnyTheTank/angular-vimeo-api-factory) _(included in minified distribution file)_
+* Used promise library: [angular-vimeo-api-factory](https://github.com/JohnnyTheTank/angular-vimeo-api-factory) _(included in distribution files)_
 
 # Documentation
     I.   INSTALLATION
@@ -14,27 +14,32 @@
     III. USAGE
 
 ## I. INSTALLATION
-    a) Get files
-    b) Include files
+    a) Get file
+    b) Include file
     c) Add dependencies
     d) Add the plugin
 
-### a) Get files
+### a) Get file
 You can choose your preferred method of installation:
 
-* Via bower: `bower install apiNG-plugin-vimeo --save`
-* Download from github: [apiNG-plugin-vimeo.zip](https://github.com/JohnnyTheTank/apiNG-plugin-vimeo/zipball/master)
+Install via either [bower](http://bower.io/), [npm](https://www.npmjs.com/) or downloaded files:
 
-### b) Include files
+* `bower install apiNG-plugin-vimeo --save`
+* `npm install aping-plugin-vimeo --save`
+* download [apiNG-plugin-vimeo.zip](https://github.com/JohnnyTheTank/apiNG-plugin-vimeo/zipball/master)
+
+### b) Include file
 Include `aping-plugin-vimeo.min.js` in your apiNG application
-```html
-<script src="bower_components/apiNG-plugin-vimeo/dist/aping-plugin-vimeo.min.js"></script>
-```
 
-### c) Add dependencies
-Add the module `jtt_aping_vimeo` as a dependency to your app module:
-```js
-var app = angular.module('app', ['jtt_aping', 'jtt_aping_vimeo']);
+```html
+<!-- when using bower -->
+<script src="bower_components/apiNG-plugin-vimeo/dist/aping-plugin-vimeo.min.js"></script>
+
+<!-- when using npm -->
+<script src="node_modules/aping-plugin-vimeo/dist/aping-plugin-vimeo.min.js"></script>
+
+<!-- when using downloaded files -->
+<script src="aping-plugin-vimeo.min.js"></script>
 ```
 
 ### d) Add the plugin
