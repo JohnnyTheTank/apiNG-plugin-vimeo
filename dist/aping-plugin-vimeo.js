@@ -1,8 +1,8 @@
 /**
     @name: aping-plugin-vimeo 
-    @version: 0.7.1 (11-01-2016) 
-    @author: Jonathan Hornung 
-    @url: https://github.com/JohnnyTheTank/apiNG-plugin-vimeo#readme 
+    @version: 0.7.6 (11-01-2016) 
+    @author: Jonathan Hornung <jonathan.hornung@gmail.com> 
+    @url: https://github.com/JohnnyTheTank/apiNG-plugin-vimeo 
     @license: MIT
 */
 "use strict";
@@ -42,7 +42,7 @@ var jjtApingVimeo = angular.module("jtt_aping_vimeo", ['jtt_vimeo'])
                         requestObject.per_page = appSettings.items;
                     }
 
-                    if(requestObject.per_page == 0) {
+                    if (requestObject.per_page === 0 || requestObject.per_page === '0') {
                         return false;
                     }
 

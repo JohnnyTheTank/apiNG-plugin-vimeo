@@ -35,7 +35,7 @@ var jjtApingVimeo = angular.module("jtt_aping_vimeo", ['jtt_vimeo'])
                         requestObject.per_page = appSettings.items;
                     }
 
-                    if(requestObject.per_page == 0) {
+                    if (requestObject.per_page === 0 || requestObject.per_page === '0') {
                         return false;
                     }
 
