@@ -1,6 +1,6 @@
 /**
     @name: aping-plugin-vimeo 
-    @version: 0.7.0 (09-01-2016) 
+    @version: 0.7.1 (11-01-2016) 
     @author: Jonathan Hornung 
     @url: https://github.com/JohnnyTheTank/apiNG-plugin-vimeo#readme 
     @license: MIT
@@ -8,7 +8,7 @@
 "use strict";
 
 var jjtApingVimeo = angular.module("jtt_aping_vimeo", ['jtt_vimeo'])
-    .directive('apingVimeo', ['apingApiKeys', 'apingVimeoHelper', 'apingUtilityHelper', 'vimeoFactory', function (apingApiKeys, apingVimeoHelper, apingUtilityHelper, vimeoFactory) {
+    .directive('apingVimeo', ['apingVimeoHelper', 'apingUtilityHelper', 'vimeoFactory', function (apingVimeoHelper, apingUtilityHelper, vimeoFactory) {
         return {
             require: '?aping',
             restrict: 'A',

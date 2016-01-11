@@ -1,6 +1,6 @@
 {
   "name": "aping-plugin-vimeo",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "vimeo plugin for apiNG",
   "main": "dist/aping-plugin-vimeo.min.js",
   "scripts": {

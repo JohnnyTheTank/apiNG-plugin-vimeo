@@ -1,7 +1,7 @@
 "use strict";
 
 var jjtApingVimeo = angular.module("jtt_aping_vimeo", ['jtt_vimeo'])
-    .directive('apingVimeo', ['apingApiKeys', 'apingVimeoHelper', 'apingUtilityHelper', 'vimeoFactory', function (apingApiKeys, apingVimeoHelper, apingUtilityHelper, vimeoFactory) {
+    .directive('apingVimeo', ['apingVimeoHelper', 'apingUtilityHelper', 'vimeoFactory', function (apingVimeoHelper, apingUtilityHelper, vimeoFactory) {
         return {
             require: '?aping',
             restrict: 'A',
