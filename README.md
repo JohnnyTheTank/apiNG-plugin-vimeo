@@ -16,17 +16,17 @@
 # Documentation
 
 1. [INSTALLATION](#1-installation)
-    I. Get file
-    II. Include file
-    III. Add dependency
-    IV. Add plugin
+    1. Get file
+    2. Include file
+    3. Add dependency
+    4. Add plugin
 2. [ACCESS TOKEN](#2-access-token)
-    I. Generate your `access_token`
-    II. Insert your `access_token` into `aping-config.js`
+    1. Generate your `access_token`
+    2. Insert your `access_token` into `aping-config.js`
 3. [USAGE](#3-usage)
-    I. Models
-    II. Requests
-    III. Rate limit
+    1. Models
+    2. Requests
+    3. Rate limit
 
 ## 1. INSTALLATION
 
