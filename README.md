@@ -1,29 +1,32 @@
 [logo]: http://aping.io/logo/320/aping-plugin.png "apiNG Plugin"
 ![apiNG][logo]
 
+[![npm version](https://badge.fury.io/js/aping-plugin-vimeo.png)](https://badge.fury.io/js/aping-plugin-vimeo)
+[![Bower version](https://badge.fury.io/bo/apiNG-plugin-vimeo.png)](https://badge.fury.io/bo/apiNG-plugin-vimeo)
+
 # apiNG-plugin-vimeo
 [Vimeo API](https://developer.vimeo.com/api) Plugin for [apiNG](https://github.com/JohnnyTheTank/apiNG)
 
 # Information
 * **Supported apiNG models: `social`, `video`**
-* This plugin supports the [`get-native-data` parameter](https://aping.readme.io/docs/configuration#parameters)
+* This plugin supports the [`get-native-data` parameter](https://aping.readme.io/docs/advanced#parameters)
 * This plugin needs an [access token](#2-access-token) :warning:
 * Used promise library: [angular-vimeo-api-factory](https://github.com/JohnnyTheTank/angular-vimeo-api-factory) _(included in distribution files)_
 
 # Documentation
 
 1. [INSTALLATION](#1-installation)
-    1. Get file
-    2. Include file
-    3. Add dependencies
-    4. Add plugin
+    I. Get file
+    II. Include file
+    III. Add dependency
+    IV. Add plugin
 2. [ACCESS TOKEN](#2-access-token)
-    1. Generate your `access_token`
-    2. Insert your `access_token` into `aping-config.js`
+    I. Generate your `access_token`
+    II. Insert your `access_token` into `aping-config.js`
 3. [USAGE](#3-usage)
-    1. Models
-    2. Requests
-    3. Rate limit
+    I. Models
+    II. Requests
+    III. Rate limit
 
 ## 1. INSTALLATION
 
@@ -48,7 +51,13 @@ Include `aping-plugin-vimeo.min.js` in your apiNG application
 <script src="aping-plugin-vimeo.min.js"></script>
 ```
 
-### III. Add the plugin
+### III. Add dependency
+Add the module `jtt_aping_vimeo` as a dependency to your app module:
+```js
+var app = angular.module('app', ['jtt_aping', 'jtt_aping_vimeo']);
+```
+
+### IV. Add the plugin
 Add the plugin's directive `aping-vimeo="[]"` to your apiNG directive and [configure your requests](#ii-requests)
 ```html
 <aping
