@@ -1,13 +1,13 @@
 /**
     @name: aping-plugin-vimeo 
-    @version: 0.7.6 (11-01-2016) 
+    @version: 0.7.6 (24-01-2016) 
     @author: Jonathan Hornung <jonathan.hornung@gmail.com> 
     @url: https://github.com/JohnnyTheTank/apiNG-plugin-vimeo 
     @license: MIT
 */
 "use strict";
 
-var jjtApingVimeo = angular.module("jtt_aping_vimeo", ['jtt_vimeo'])
+angular.module("jtt_aping_vimeo", ['jtt_vimeo'])
     .directive('apingVimeo', ['apingVimeoHelper', 'apingUtilityHelper', 'vimeoFactory', function (apingVimeoHelper, apingUtilityHelper, vimeoFactory) {
         return {
             require: '?aping',
@@ -114,153 +114,154 @@ var jjtApingVimeo = angular.module("jtt_aping_vimeo", ['jtt_vimeo'])
         }
     }]);;"use strict";
 
-jjtApingVimeo.service('apingVimeoHelper', ['apingModels', 'apingTimeHelper', 'apingUtilityHelper', function (apingModels, apingTimeHelper, apingUtilityHelper) {
-    this.getThisPlattformString = function () {
-        return "vimeo";
-    };
+angular.module("jtt_aping_vimeo")
+    .service('apingVimeoHelper', ['apingModels', 'apingTimeHelper', 'apingUtilityHelper', function (apingModels, apingTimeHelper, apingUtilityHelper) {
+        this.getThisPlattformString = function () {
+            return "vimeo";
+        };
 
-    this.getThisPlattformLink = function () {
-        return "https://vimeo.com/";
-    };
+        this.getThisPlattformLink = function () {
+            return "https://vimeo.com/";
+        };
 
-    this.getIdFromUri = function (_uri) {
-        return _uri.split("/").slice(-1)[0];
-    };
+        this.getIdFromUri = function (_uri) {
+            return _uri.split("/").slice(-1)[0];
+        };
 
-    this.getActionCounter = function (_connections, _action) {
-        if(_connections[_action]) {
-            return _connections[_action].total || undefined;
-        }
-    };
+        this.getActionCounter = function (_connections, _action) {
+            if (_connections[_action]) {
+                return _connections[_action].total || undefined;
+            }
+        };
 
-    this.getGoodQualityImage = function (_sizesArray) {
-        var favoritePosition = 4;
+        this.getGoodQualityImage = function (_sizesArray) {
+            var favoritePosition = 4;
 
-        if(_sizesArray.length >= favoritePosition) {
-            return _sizesArray[favoritePosition-1].link;
-        } else {
-            return _sizesArray[_sizesArray.length-1].link;
-        }
-    };
+            if (_sizesArray.length >= favoritePosition) {
+                return _sizesArray[favoritePosition - 1].link;
+            } else {
+                return _sizesArray[_sizesArray.length - 1].link;
+            }
+        };
 
-    this.getObjectByJsonData = function (_data, _helperObject) {
-        var requestResults = [];
-        if (_data && _data.data) {
-            var _this = this;
+        this.getObjectByJsonData = function (_data, _helperObject) {
+            var requestResults = [];
+            if (_data && _data.data) {
+                var _this = this;
 
-            if (_data.data.data) {
+                if (_data.data.data) {
 
-                angular.forEach(_data.data.data, function (value, key) {
-                    var tempResult;
-                    if(_helperObject.getNativeData === true || _helperObject.getNativeData === "true") {
-                        tempResult = value;
-                    } else {
-                        tempResult = _this.getItemByJsonData(value, _helperObject.model);
-                    }
-                    if(tempResult) {
-                        requestResults.push(tempResult);
-                    }
-                });
+                    angular.forEach(_data.data.data, function (value, key) {
+                        var tempResult;
+                        if (_helperObject.getNativeData === true || _helperObject.getNativeData === "true") {
+                            tempResult = value;
+                        } else {
+                            tempResult = _this.getItemByJsonData(value, _helperObject.model);
+                        }
+                        if (tempResult) {
+                            requestResults.push(tempResult);
+                        }
+                    });
+                }
+
+            }
+            return requestResults;
+        };
+
+        this.getItemByJsonData = function (_item, _model) {
+            var returnObject = {};
+            if (_item && _model) {
+                switch (_model) {
+                    case "social":
+                        returnObject = this.getSocialItemByJsonData(_item);
+                        break;
+                    case "video":
+                        returnObject = this.getVideoItemByJsonData(_item);
+                        break;
+
+                    default:
+                        return false;
+                }
+            }
+            return returnObject;
+        };
+
+        this.getSocialItemByJsonData = function (_item) {
+            var socialObject = apingModels.getNew("social", this.getThisPlattformString());
+
+            $.extend(true, socialObject, {
+                blog_name: _item.user.name,
+                blog_id: this.getIdFromUri(_item.user.uri),
+                blog_link: _item.user.link,
+                intern_type: "video",
+                type: "video",
+                intern_id: this.getIdFromUri(_item.uri),
+                img_url: this.getGoodQualityImage(_item.pictures.sizes),
+                timestamp: apingTimeHelper.getTimestampFromDateString(_item.created_time, 1000, 3600 * 1000),
+                post_url: _item.link,
+                caption: _item.name,
+                text: _item.description,
+            });
+
+            socialObject.date_time = new Date(socialObject.timestamp);
+
+            if (_item.embed && _item.embed.html) {
+                socialObject.source = _item.embed.html;
             }
 
-        }
-        return requestResults;
-    };
-
-    this.getItemByJsonData = function (_item, _model) {
-        var returnObject = {};
-        if (_item && _model) {
-            switch (_model) {
-                case "social":
-                    returnObject = this.getSocialItemByJsonData(_item);
-                    break;
-                case "video":
-                    returnObject = this.getVideoItemByJsonData(_item);
-                    break;
-
-                default:
-                    return false;
+            if (!socialObject.text) {
+                socialObject.text = socialObject.caption;
+                socialObject.caption = "";
             }
-        }
-        return returnObject;
-    };
 
-    this.getSocialItemByJsonData = function (_item) {
-        var socialObject = apingModels.getNew("social", this.getThisPlattformString());
+            if (_item.metadata && _item.metadata.connections) {
+                socialObject.likes = this.getActionCounter(_item.metadata.connections, "likes");
+                socialObject.comments = this.getActionCounter(_item.metadata.connections, "comments");
+            }
 
-        $.extend(true, socialObject, {
-            blog_name: _item.user.name,
-            blog_id: this.getIdFromUri(_item.user.uri),
-            blog_link: _item.user.link,
-            intern_type: "video",
-            type: "video",
-            intern_id: this.getIdFromUri(_item.uri),
-            img_url: this.getGoodQualityImage(_item.pictures.sizes),
-            timestamp: apingTimeHelper.getTimestampFromDateString(_item.created_time, 1000, 3600*1000),
-            post_url: _item.link,
-            caption: _item.name,
-            text: _item.description,
-        });
+            return socialObject;
+        };
 
-        socialObject.date_time = new Date(socialObject.timestamp);
+        this.getVideoItemByJsonData = function (_item) {
+            var videoObject = apingModels.getNew("video", this.getThisPlattformString());
 
-        if(_item.embed && _item.embed.html) {
-            socialObject.source = _item.embed.html;
-        }
+            $.extend(true, videoObject, {
+                blog_name: _item.user.name,
+                blog_id: this.getIdFromUri(_item.user.uri),
+                blog_link: _item.user.link,
+                intern_id: this.getIdFromUri(_item.uri),
+                img_url: this.getGoodQualityImage(_item.pictures.sizes),
+                timestamp: apingTimeHelper.getTimestampFromDateString(_item.created_time, 1000, 3600 * 1000),
+                post_url: _item.link,
+                caption: _item.name,
+                text: _item.description,
+                duration: _item.duration, // in seconds
+                width: _item.width,
+                height: _item.height,
+            });
 
-        if(!socialObject.text) {
-            socialObject.text = socialObject.caption;
-            socialObject.caption = "";
-        }
+            videoObject.date_time = new Date(videoObject.timestamp);
 
-        if(_item.metadata && _item.metadata.connections ) {
-            socialObject.likes = this.getActionCounter(_item.metadata.connections, "likes");
-            socialObject.comments = this.getActionCounter(_item.metadata.connections, "comments");
-        }
+            if (_item.embed && _item.embed.html) {
+                videoObject.markup = _item.embed.html;
+            } else {
+                return false;
+            }
 
-        return socialObject;
-    };
+            if (!videoObject.text) {
+                videoObject.text = videoObject.caption;
+                videoObject.caption = "";
+            }
 
-    this.getVideoItemByJsonData = function (_item) {
-        var videoObject = apingModels.getNew("video", this.getThisPlattformString());
+            if (_item.metadata && _item.metadata.connections) {
+                videoObject.likes = this.getActionCounter(_item.metadata.connections, "likes");
+                videoObject.comments = this.getActionCounter(_item.metadata.connections, "comments");
+            }
 
-        $.extend(true, videoObject, {
-            blog_name: _item.user.name,
-            blog_id: this.getIdFromUri(_item.user.uri),
-            blog_link: _item.user.link,
-            intern_id: this.getIdFromUri(_item.uri),
-            img_url: this.getGoodQualityImage(_item.pictures.sizes),
-            timestamp: apingTimeHelper.getTimestampFromDateString(_item.created_time, 1000, 3600*1000),
-            post_url: _item.link,
-            caption: _item.name,
-            text: _item.description,
-            duration: _item.duration, // in seconds
-            width: _item.width,
-            height: _item.height,
-        });
+            return videoObject;
+        };
 
-        videoObject.date_time = new Date(videoObject.timestamp);
-
-        if(_item.embed && _item.embed.html) {
-            videoObject.markup = _item.embed.html;
-        } else {
-            return false;
-        }
-
-        if(!videoObject.text) {
-            videoObject.text = videoObject.caption;
-            videoObject.caption = "";
-        }
-
-        if(_item.metadata && _item.metadata.connections ) {
-            videoObject.likes = this.getActionCounter(_item.metadata.connections, "likes");
-            videoObject.comments = this.getActionCounter(_item.metadata.connections, "comments");
-        }
-
-        return videoObject;
-    };
-
-}]);;"use strict";
+    }]);;"use strict";
 
 angular.module("jtt_vimeo", [])
     .factory('vimeoFactory', ['$http', 'vimeoSearchDataService', function ($http, vimeoSearchDataService) {
