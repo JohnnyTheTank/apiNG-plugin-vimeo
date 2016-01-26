@@ -1,6 +1,6 @@
 /**
     @name: aping-plugin-vimeo 
-    @version: 0.7.6 (24-01-2016) 
+    @version: 0.7.7 (26-01-2016) 
     @author: Jonathan Hornung <jonathan.hornung@gmail.com> 
     @url: https://github.com/JohnnyTheTank/apiNG-plugin-vimeo 
     @license: MIT
@@ -144,6 +144,98 @@ angular.module("jtt_aping_vimeo")
             }
         };
 
+        /**
+         * returns the difference between two integers
+         *
+         * @param _int1 {number}
+         * @param _int2 {number}
+         * @returns {number}
+         */
+        this.getDifference = function (_int1, _int2) {
+            if (_int1 > _int2) {
+                return _int1 - _int2;
+            } else {
+                return _int2 - _int1;
+            }
+        };
+
+        /**
+         * returns an object with images urls and dimensions
+         *
+         * @param _array {Array}
+         * @returns {Object}
+         */
+        this.getImagesFromImageArray = function (_array) {
+
+            var that = this;
+
+            var returnObject = {
+                thumb_url: undefined,
+                thumb_width: undefined, // best case 200px (min)
+                thumb_height: undefined,
+                img_url: undefined,
+                img_width: undefined, // best case 700px
+                img_height: undefined,
+                native_url: undefined,
+                native_width: undefined,
+                native_height: undefined,
+            };
+
+            if (_array.constructor === Array) {
+
+
+                angular.forEach(_array, function (value, key) {
+                    if (typeof value.link !== "undefined") {
+                        if (typeof returnObject.thumb_url === "undefined") {
+                            returnObject.thumb_url = value.link;
+                            returnObject.thumb_width = value.width;
+                            returnObject.thumb_height = value.height;
+                        } else {
+                            if (
+                                that.getDifference(returnObject.thumb_width, 200) > that.getDifference(value.width, 200)
+                                &&
+                                value.width >= 200
+                            ) {
+                                returnObject.thumb_url = value.link;
+                                returnObject.thumb_width = value.width;
+                                returnObject.thumb_height = value.height;
+                            }
+                        }
+
+                        if (typeof returnObject.img_url === "undefined") {
+                            returnObject.img_url = value.link;
+                            returnObject.img_width = value.width;
+                            returnObject.img_height = value.height;
+                        } else {
+                            if (
+                                that.getDifference(returnObject.img_width, 700) > that.getDifference(value.width, 700)
+                            ) {
+                                returnObject.img_url = value.link;
+                                returnObject.img_width = value.width;
+                                returnObject.img_height = value.height;
+                            }
+                        }
+
+                        if (typeof returnObject.native_url === "undefined") {
+                            returnObject.native_url = value.link;
+                            returnObject.native_width = value.width;
+                            returnObject.native_height = value.height;
+                        } else {
+                            if (
+                                value.width > returnObject.native_width
+                            ) {
+                                returnObject.native_url = value.link;
+                                returnObject.native_width = value.width;
+                                returnObject.native_height = value.height;
+                            }
+                        }
+                    }
+                });
+            }
+
+            return returnObject;
+        };
+
         this.getObjectByJsonData = function (_data, _helperObject) {
             var requestResults = [];
             if (_data && _data.data) {
@@ -196,7 +288,6 @@ angular.module("jtt_aping_vimeo")
                 intern_type: "video",
                 type: "video",
                 intern_id: this.getIdFromUri(_item.uri),
-                img_url: this.getGoodQualityImage(_item.pictures.sizes),
                 timestamp: apingTimeHelper.getTimestampFromDateString(_item.created_time, 1000, 3600 * 1000),
                 post_url: _item.link,
                 caption: _item.name,
@@ -204,6 +295,13 @@ angular.module("jtt_aping_vimeo")
             });
 
             socialObject.date_time = new Date(socialObject.timestamp);
+
+            if (_item.pictures && _item.pictures.sizes.length > 0) {
+                var tempImageArray = this.getImagesFromImageArray(_item.pictures.sizes);
+                socialObject.img_url = tempImageArray.img_url || undefined;
+                socialObject.thumb_url = tempImageArray.thumb_url || undefined;
+                socialObject.native_url = tempImageArray.native_url || undefined;
+            }
 
             if (_item.embed && _item.embed.html) {
                 socialObject.source = _item.embed.html;
@@ -230,7 +328,6 @@ angular.module("jtt_aping_vimeo")
                 blog_id: this.getIdFromUri(_item.user.uri),
                 blog_link: _item.user.link,
                 intern_id: this.getIdFromUri(_item.uri),
-                img_url: this.getGoodQualityImage(_item.pictures.sizes),
                 timestamp: apingTimeHelper.getTimestampFromDateString(_item.created_time, 1000, 3600 * 1000),
                 post_url: _item.link,
                 caption: _item.name,
@@ -239,6 +336,13 @@ angular.module("jtt_aping_vimeo")
                 width: _item.width,
                 height: _item.height,
             });
+
+            if (_item.pictures && _item.pictures.sizes.length > 0) {
+                var tempImageArray = this.getImagesFromImageArray(_item.pictures.sizes);
+                videoObject.img_url = tempImageArray.img_url || undefined;
+                videoObject.thumb_url = tempImageArray.thumb_url || undefined;
+                videoObject.native_url = tempImageArray.native_url || undefined;
+            }
 
             videoObject.date_time = new Date(videoObject.timestamp);
 

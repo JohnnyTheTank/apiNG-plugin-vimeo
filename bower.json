@@ -4,7 +4,7 @@
   "authors": [
     "Jonathan Hornung <jonathan.hornung@gmail.com>"
   ],
-  "version": "0.7.6",
+  "version": "0.7.7",
   "description": "Vimeo plugin for apiNG",
   "main": "dist/aping-plugin-vimeo.min.js",
   "moduleType": [],
@@ -25,6 +25,6 @@
     "tests"
   ],
   "dependencies": {
-    "apiNG": "*"
+    "aping": "^1.0.9"
   }
 }
