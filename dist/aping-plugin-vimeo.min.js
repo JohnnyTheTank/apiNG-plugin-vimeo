@@ -1,6 +1,6 @@
 /**
     @name: aping-plugin-vimeo 
-    @version: 0.7.7 (28-01-2016) 
+    @version: 0.7.8 (28-01-2016) 
     @author: Jonathan Hornung <jonathan.hornung@gmail.com> 
     @url: https://github.com/JohnnyTheTank/apiNG-plugin-vimeo 
     @license: MIT
