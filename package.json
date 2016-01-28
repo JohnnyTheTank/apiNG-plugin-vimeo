@@ -33,6 +33,6 @@
     "angular-vimeo-api-factory": "*"
   },
   "dependencies": {
-    "aping": "^1.0.9"
+    "aping": "*"
   }
 }

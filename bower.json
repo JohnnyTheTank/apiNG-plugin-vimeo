@@ -25,6 +25,6 @@
     "tests"
   ],
   "dependencies": {
-    "aping": "^1.0.9"
+    "apiNG": "*"
   }
 }

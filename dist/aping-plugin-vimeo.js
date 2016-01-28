@@ -1,6 +1,6 @@
 /**
     @name: aping-plugin-vimeo 
-    @version: 0.7.7 (26-01-2016) 
+    @version: 0.7.7 (28-01-2016) 
     @author: Jonathan Hornung <jonathan.hornung@gmail.com> 
     @url: https://github.com/JohnnyTheTank/apiNG-plugin-vimeo 
     @license: MIT
@@ -131,16 +131,6 @@ angular.module("jtt_aping_vimeo")
         this.getActionCounter = function (_connections, _action) {
             if (_connections[_action]) {
                 return _connections[_action].total || undefined;
-            }
-        };
-
-        this.getGoodQualityImage = function (_sizesArray) {
-            var favoritePosition = 4;
-
-            if (_sizesArray.length >= favoritePosition) {
-                return _sizesArray[favoritePosition - 1].link;
-            } else {
-                return _sizesArray[_sizesArray.length - 1].link;
             }
         };
 
@@ -281,7 +271,7 @@ angular.module("jtt_aping_vimeo")
         this.getSocialItemByJsonData = function (_item) {
             var socialObject = apingModels.getNew("social", this.getThisPlattformString());
 
-            $.extend(true, socialObject, {
+            angular.extend(socialObject, {
                 blog_name: _item.user.name,
                 blog_id: this.getIdFromUri(_item.user.uri),
                 blog_link: _item.user.link,
@@ -323,7 +313,7 @@ angular.module("jtt_aping_vimeo")
         this.getVideoItemByJsonData = function (_item) {
             var videoObject = apingModels.getNew("video", this.getThisPlattformString());
 
-            $.extend(true, videoObject, {
+            angular.extend(videoObject, {
                 blog_name: _item.user.name,
                 blog_id: this.getIdFromUri(_item.user.uri),
                 blog_link: _item.user.link,

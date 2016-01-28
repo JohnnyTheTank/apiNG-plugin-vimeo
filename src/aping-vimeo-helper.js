@@ -20,16 +20,6 @@ angular.module("jtt_aping_vimeo")
             }
         };
 
-        this.getGoodQualityImage = function (_sizesArray) {
-            var favoritePosition = 4;
-
-            if (_sizesArray.length >= favoritePosition) {
-                return _sizesArray[favoritePosition - 1].link;
-            } else {
-                return _sizesArray[_sizesArray.length - 1].link;
-            }
-        };
-
         /**
          * returns the difference between two integers
          *
@@ -167,7 +157,7 @@ angular.module("jtt_aping_vimeo")
         this.getSocialItemByJsonData = function (_item) {
             var socialObject = apingModels.getNew("social", this.getThisPlattformString());
 
-            $.extend(true, socialObject, {
+            angular.extend(socialObject, {
                 blog_name: _item.user.name,
                 blog_id: this.getIdFromUri(_item.user.uri),
                 blog_link: _item.user.link,
@@ -209,7 +199,7 @@ angular.module("jtt_aping_vimeo")
         this.getVideoItemByJsonData = function (_item) {
             var videoObject = apingModels.getNew("video", this.getThisPlattformString());
 
-            $.extend(true, videoObject, {
+            angular.extend(videoObject, {
                 blog_name: _item.user.name,
                 blog_id: this.getIdFromUri(_item.user.uri),
                 blog_link: _item.user.link,
