@@ -2,8 +2,8 @@
 ![apiNG][logo]
 
 [![Join the chat at https://gitter.im/JohnnyTheTank/apiNG](https://img.shields.io/badge/GITTER-join%20chat-green.svg)](https://gitter.im/JohnnyTheTank/apiNG?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![npm version](https://badge.fury.io/js/aping-plugin-vimeo.png)](https://badge.fury.io/js/aping-plugin-vimeo)
-[![Bower version](https://badge.fury.io/bo/apiNG-plugin-vimeo.png)](https://badge.fury.io/bo/apiNG-plugin-vimeo)
+[![npm version](https://badge.fury.io/js/aping-plugin-vimeo.svg)](https://badge.fury.io/js/aping-plugin-vimeo)
+[![Bower version](https://badge.fury.io/bo/apiNG-plugin-vimeo.svg)](https://badge.fury.io/bo/apiNG-plugin-vimeo)
 
 # apiNG-plugin-vimeo
 [Vimeo API](https://developer.vimeo.com/api) Plugin for [apiNG](https://github.com/JohnnyTheTank/apiNG)
