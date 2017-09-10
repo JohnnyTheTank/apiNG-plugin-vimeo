@@ -50,7 +50,7 @@ Include `aping-plugin-vimeo.min.js` in your apiNG application
 <script src="node_modules/aping-plugin-vimeo/dist/aping-plugin-vimeo.min.js"></script>
 
 <!-- when using cdn file -->
-<script src="//cdn.jsdelivr.net/aping.plugin-vimeo/latest/aping-plugin-vimeo.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/aping-plugin-vimeo@latest/dist/aping-plugin-vimeo.min.js"></script>
 
 <!-- when using downloaded files -->
 <script src="aping-plugin-vimeo.min.js"></script>
